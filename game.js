@@ -20,7 +20,6 @@ $(document).keydown(function() {
 $(".btn").click(function() {
   let userChosenColor = $(this).attr("id");
   userClickedPattern.push(userChosenColor);
-  console.log(userClickedPattern);
 
   playSound(userChosenColor);
   animatePress(userChosenColor);
@@ -37,7 +36,6 @@ function nextSequence() {
   let randomNumber = Math.floor(Math.random() * 4);
   let randomChosenColor = buttonColors[randomNumber];
   gamePattern.push(randomChosenColor);
-  console.log(gamePattern);
 
   // jQuery to select button with same id as randomChosenColor
   $(`#${randomChosenColor}`).fadeIn(100).fadeOut(100).fadeIn(100); // animate a flash to the button
@@ -60,7 +58,6 @@ function animatePress(currentColor) {
 
 function checkAnswer(currentLevel) {
   if(gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
-    console.log("success");
 
     // call the next color in pattern after a short delay
     if(userClickedPattern.length === gamePattern.length) {
@@ -69,7 +66,6 @@ function checkAnswer(currentLevel) {
       }, 1000);
     }
   }else{
-    console.log("wrong");
     playSound("wrong");
 
     $("body").addClass("game-over");
