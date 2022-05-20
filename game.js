@@ -7,7 +7,12 @@ let level = 0;
 $(document).keydown(function() {
   if(!started) {
     $("#level-title").text(`Level ${level}`);
-    nextSequence();
+
+    // delay the first color when game starts
+    setTimeout(function() {
+      nextSequence();
+    }, 1500);
+
     started = true;
   }
 });
@@ -73,5 +78,13 @@ function checkAnswer(currentLevel) {
     }, 200)
 
     $("h1").text("Game Over!, Press Any Key to Restart");
+
+    startOver();
   }
+}
+
+function startOver() {
+  level = 0;
+  gamePattern = [];
+  started = false;
 }
